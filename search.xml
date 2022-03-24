@@ -1,6 +1,36 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>MyBatis-Plus逻辑删除的使用</title>
+    <url>/post/3900.html</url>
+    <content><![CDATA[<h2 id="MyBatis-Plus的逻辑删除"><a href="#MyBatis-Plus的逻辑删除" class="headerlink" title="MyBatis-Plus的逻辑删除"></a>MyBatis-Plus的逻辑删除</h2><h2 id="概念"><a href="#概念" class="headerlink" title="概念"></a>概念</h2><ul>
+<li>逻辑删除：文件并未被真正的删除，只是逻辑上被删除。</li>
+<li>物理删除：文件所存储的存储区域被真正的擦除或清零，是不可恢复的。</li>
+</ul>
+<p>逻辑删除是把要删除的数据打上一个删除标记，在逻辑上是被删除的，但文件还在。</p>
+<h2 id="基本使用"><a href="#基本使用" class="headerlink" title="基本使用"></a>基本使用</h2><p>创造数据库表(注意需设置一个删除标识的字段，一般0表示未删除，1表示删除)</p>
+<p><img src="/post/3900/image-20220324154755390.png" alt="image-20220324154755390"></p>
+<p>创建springboot项目，引入依赖</p>
+<p><img src="/post/3900/image-20220324155159598.png" alt="image-20220324155159598"></p>
+<p>application.yml 配置文件修改</p>
+<p><img src="/post/3900/image-20220324155542659.png" alt="image-20220324155542659"></p>
+<p>此为逻辑删除的全局配置，同时也可在每个实体类中设置(不推荐)。</p>
+<p>最后注意要在实体类中添加@TableLogic注解</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="meta">@TableLogic</span></span><br><span class="line"><span class="keyword">private</span> Boolean Flag;</span><br></pre></td></tr></table></figure>
+
+<p>在正常控制层调用即可，但这局限于单表操作。</p>
+<p>逻辑删除只是在更新标识，并不会真正地删除，根据数据库反映的结果并可知。</p>
+<h2 id="进阶使用"><a href="#进阶使用" class="headerlink" title="进阶使用"></a>进阶使用</h2><p>可通过sql注入来自定义查询修改（此处待补）。</p>
+<p>逻辑删除标识就是一个普通的字段，只是我们用注解告诉了MyBatis-Plus，这是逻辑删除标识，这样MyBatis-Plus才能在我们进行CRUD时，给我们加限制条件，如果想要自定义sql语句来CRUD，就必须自己加上限制条件。</p>
+]]></content>
+      <categories>
+        <category>技术 数据库</category>
+      </categories>
+      <tags>
+        <tag>MyBatis-Plus</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>记录搭建博客过程</title>
     <url>/post/8005.html</url>
     <content><![CDATA[<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>这篇主要是记录一下自己搭建博客的过程，方便以后查看。这是采用 hexo+github pages 来构建我的博客。</p>
